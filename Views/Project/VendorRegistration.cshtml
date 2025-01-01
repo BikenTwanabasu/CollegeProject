@@ -33,7 +33,7 @@
                 <span asp-validation-for="CompanyEmail" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" on-click="VendorRegistration()" value="Create" class="btn btn-primary" />
+                <input type="submit" onclick="VendorRegistration()" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -43,7 +43,7 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
 <script>
     function VendorRegistration() {
         debugger;
@@ -52,13 +52,13 @@
         var CompanyPhone = $("#CompanyPhone").val();
         var CompanyEmail =$("#CompanyEmail").val();
         $.ajax({
-            url: "@Url.Action("VendorRegistration","Project")",
+            url: '@Url.Action("VendorRegistration","Project")',
             type:"POST",
             Data:{
-                CompanyName:CompanyName;
-                CompanyAddress:CompanyAddress;
-                CompanyPhone:CompanyPhone;
-                CompanyEmail:CompanyEmail;
+                CompanyName:CompanyName,
+                CompanyAddress:CompanyAddress,
+                CompanyPhone:CompanyPhone,
+                CompanyEmail:CompanyEmail
             },
             dataType:"JSON",
             success:function(response){

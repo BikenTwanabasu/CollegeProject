@@ -19,7 +19,10 @@ namespace CollegeProject.RepoClass
         }
         public bool InsertVendor(Vendor vendor)
         {
-            int i=0;
+            int i = 0;
+            if (vendor.CompanyName == null && vendor.CompanyEmail == null) { return false; }
+
+            
             using (SqlConnection con = new SqlConnection(ConnectionString()))
             {
                 con.Open();
@@ -32,8 +35,9 @@ namespace CollegeProject.RepoClass
                 cmd.Parameters.AddWithValue("@flag", "VendorRegistration");
 
                 i = cmd.ExecuteNonQuery();
+                return i > 0;
             }
-            return i>0;
+            
         }
     }
 }

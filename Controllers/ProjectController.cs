@@ -12,16 +12,16 @@ namespace CollegeProject.Controllers
         {
             _services = services;
         }
-        [HttpGet]
-        public IActionResult VendorRegistration()
-        {
-            return View();
-        }
-        [HttpPost]
+        
         public IActionResult VendorRegistration(Vendor vendor)
         {
+            
             var a=_services.InsertVendor(vendor);
-            return Json(a);
+            if (a)
+            {
+                return Json(a);
+            }
+            return View();
 
         }
         public IActionResult Index()
