@@ -4,6 +4,8 @@ namespace CollegeProject.RepoClass
 {
     public interface IServices
     {
-        public bool InsertVendor(Vendor vendor);
+        public bool RegisterVendor(Vendor vendor);
+        public bool RegisterAgent(Agent agent);
+        public bool OrderCreations(OrderAndStudentModel orderAndStudentModel);
     }
 }

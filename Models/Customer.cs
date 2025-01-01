@@ -7,7 +7,7 @@
         public string? CustomerAddress { get; set; }
         public string? Phone { get; set; }
         public string? Email { get; set; }
-        public string? CreatedDate { get; set; }
+        public string? OrderReceiveDate { get; set; }
     } 
     
     public class Vendor
@@ -17,6 +17,8 @@
         public string? CompanyAddress { get; set; }
         public string? CompanyPhone { get; set; }
         public string? CompanyEmail { get; set; }
+
+        public string? Password { get; set; }   
     }
                      
     public class Order
@@ -27,16 +29,19 @@
         public string? PaymentStatus { get; set; }
                      
         public string? DeliveryDate { get; set; }    
-        public string? CreatedDate { get;set; }
+        public string? OrderReceiveDate { get;set; }
         public string? CustomerId { get; set; }
     }
 
     public class Agent
     {
         public string? AgentId { get; set; }
+        public string? AgentName { get; set; }
         public string? AgentPhone { get; set; }
         public string? AgentEmail { get; set; }
         public string? AgentAddress { get; set; }
+
+        public string? AgentPassword { get; set; }
     }
 
     public class Delivery
@@ -47,6 +52,12 @@
         public string? DeliveryStatus { get; set; } 
         public string? DeliveryCharge { get; set; }
         public string? DeliveryDate { get; set; }
-        public string? CreatedDate { get; set;}
+        public string? OrderReceiveDate { get; set;}
+    }
+
+    public class OrderAndStudentModel
+    {
+        public Customer? customer { get; set; }
+        public Order? order { get; set; }
     }
 }

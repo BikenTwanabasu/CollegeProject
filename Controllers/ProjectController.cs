@@ -16,7 +16,7 @@ namespace CollegeProject.Controllers
         public IActionResult VendorRegistration(Vendor vendor)
         {
             
-            var a=_services.InsertVendor(vendor);
+            var a=_services.RegisterVendor(vendor);
             if (a)
             {
                 return Json(a);
@@ -24,6 +24,30 @@ namespace CollegeProject.Controllers
             return View();
 
         }
+        public IActionResult AgentRegistration(Agent agent)
+        {
+
+            var a = _services.RegisterAgent(agent);
+            if (a)
+            {
+                return Json(a);
+            }
+            return View();
+
+        }
+        
+        public IActionResult OrderCreation(OrderAndStudentModel orderAndStudentModel)
+        {
+
+            var a = _services.OrderCreations(orderAndStudentModel);
+            if (a)
+            {
+                return Json(a);
+            }
+            return View();
+
+        }
+
         public IActionResult Index()
         {
             return View();
