@@ -6,64 +6,63 @@
 
 <h2>Create Order</h2>
 
-    <h3>Customer Details</h3>
-<form>
+<h3>Customer Details</h3>
+
+@using (Html.BeginForm("OrderCreation", "Project", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
     <div class="form-group">
-        <label for="CustomerName">Customer Name</label>
-        <input type="text" class="form-control" id="CustomerName" required />
+        @Html.LabelFor(model => model.customer.CustomerName, htmlAttributes: new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.customer.CustomerName, new { @class = "form-control", required = "required" })
     </div>
 
     <div class="form-group">
-        <label for="CustomerAddress">Customer Address</label>
-        <input type="text" class="form-control" id="CustomerAddress" required />
+        @Html.LabelFor(model => model.customer.CustomerAddress, htmlAttributes: new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.customer.CustomerAddress, new { @class = "form-control", required = "required" })
     </div>
 
     <div class="form-group">
-        <label for="Phone">Customer Phone</label>
-        <input type="text" class="form-control" id="Phone" required />
+        @Html.LabelFor(model => model.customer.Phone, htmlAttributes: new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.customer.Phone, new { @class = "form-control", required = "required" })
     </div>
 
     <div class="form-group">
-        <label for="Email">Customer Email</label>
-        <input type="email" class="form-control" id="Email" required />
+        @Html.LabelFor(model => model.customer.Email, htmlAttributes: new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.customer.Email, new { @class = "form-control", required = "required", type = "email" })
     </div>
 
     <div class="form-group">
-        <label for="OrderReceiveDate">Order Receive Date</label>
-        <input type="date" class="form-control" id="OrderReceiveDate" required />
+        @Html.LabelFor(model => model.customer.OrderReceiveDate, htmlAttributes: new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.customer.OrderReceiveDate, new { @class = "form-control", required = "required", type = "date" })
     </div>
 
     <h3>Order Details</h3>
 
     <div class="form-group">
-        <label for="Amount">Amount</label>
-        <input type="number" class="form-control" id="Amount" />
-    </div>
-
-
-    <div class="form-group">
-        <label for="PaymentStatus">Payment Status</label>
-        <select class="form-control custom-select" id="PaymentStatus" required>
-            <option value="" disabled selected>Select Payment Status</option>
-            <option value="COD">COD</option>
-            <option value="Pre-Payment">Pre-Payment</option>
-            <option value="Online">Online</option>
-            <option value="Credit">Credit</option>
-        </select>
+        @Html.LabelFor(model => model.order.Amount, htmlAttributes: new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.order.Amount, new { @class = "form-control", type = "number" })
     </div>
 
     <div class="form-group">
-        <label for="DeliveryAddress">Delivery Address</label>
-        <input type="text" class="form-control" id="DeliveryAddress" required />
+        @Html.LabelFor(model => model.order.PaymentStatus, htmlAttributes: new { @class = "control-label" })
+        @Html.DropDownListFor(model => model.order.PaymentStatus,
+    new SelectList(new[] { "COD", "Pre-Payment", "Online", "Credit" }),
+    "Select Payment Status", new { @class = "form-control", required = "required" })
     </div>
 
     <div class="form-group">
-        <label for="DeliveryDate">Delivery Date</label>
-        <input type="date" class="form-control" id="DeliveryDate" required />
+        @Html.LabelFor(model => model.order.DeliveryAddress, htmlAttributes: new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.order.DeliveryAddress, new { @class = "form-control", required = "required" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.order.DeliveryDate, htmlAttributes: new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.order.DeliveryDate, new { @class = "form-control", required = "required", type = "date" })
     </div>
 
     <button type="submit" onclick="CreateOrder()" class="btn btn-primary">Create Order</button>
-</form>
+}
 <script>
     function CreateOrder() {
         debugger;
@@ -82,22 +81,20 @@
             type: 'Post',
             dataType: 'Json',
             data: {
-                var orderAndStudentModel = {
+                   orderAndStudentModel = {
                     customer: {
                         CustomerName: CustomerName,
                         CustomerAddress: CustomerAddress,
                         Phone: Phone,
                         Email: Email,
                         OrderReceiveDate: OrderReceiveDate
-                    },
-                    order: {
+                  },
+                  order: {
                         Amount: Amount,
                         PaymentStatus: PaymentStatus,
                         DeliveryAddress: DeliveryAddress,
                         DeliveryDate: DeliveryDate
-                    }
-                };
-
+                  }
             },
             success:function(response){
                 if(response){
