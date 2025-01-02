@@ -105,5 +105,30 @@ namespace CollegeProject.RepoClass
             }
 
         }
+        public Agent AgentLogIn(Agent agent)
+        {
+           
+            using (SqlConnection con = new SqlConnection(ConnectionString()))
+            {   
+                con.Open();
+                SqlCommand cmd = new SqlCommand("sp_insertDatas", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@AgentEmail", agent.AgentEmail);
+                cmd.Parameters.AddWithValue("@AgentPassword", agent.AgentPassword);               
+                cmd.Parameters.AddWithValue("@flag", "AgentLogIn");
+                SqlDataReader rdr=cmd.ExecuteReader();
+
+                if (rdr.Read())
+                {
+                    agent.ResponseCode = (int)rdr["ResponseCode"];
+                    agent.ResponseMessage = rdr["ResponseMessage"].ToString();
+                    agent.AgentId = rdr["AgentId"].ToString();
+ 
+                }
+                return agent;
+              
+            }
+
+        }
     }
 }

@@ -18,7 +18,9 @@
         public string? CompanyPhone { get; set; }
         public string? CompanyEmail { get; set; }
 
-        public string? Password { get; set; }   
+        public string? Password { get; set; }
+        public string? ResponseCode { get; set; }
+        public string? ResponseMessage { get; set; }
     }
                      
     public class Order
@@ -42,6 +44,9 @@
         public string? AgentAddress { get; set; }
 
         public string? AgentPassword { get; set; }
+
+        public int? ResponseCode { get; set; }
+        public string? ResponseMessage { get; set; }
     }
 
     public class Delivery

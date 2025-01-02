@@ -24,6 +24,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Project}/{action=OrderCreation}/{id?}");
+    pattern: "{controller=Log}/{action=AgentLoggingIn}/{id?}");
 
 app.Run();

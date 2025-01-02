@@ -64,50 +64,52 @@
     <button type="submit" onclick="CreateOrder()" class="btn btn-primary">Create Order</button>
 }
 <script>
-    function CreateOrder() {
-        debugger;
-        var CustomerName = $("#CustomerName").val();
-        var CustomerAddress = $("#CustomerAddress").val();
-        var Phone = $("#Phone").val();
-        var Email = $("#Email").val();
-        var OrderReceiveDate = $("#OrderReceiveDate").val();
-        var Amount = $("#Amount").val();
-        var PaymentStatus = $("#PaymentStatus").val();
-        var DeliveryAddress =$("#DeliveryAddress").val();
-        var DeliveryDate = $("#DeliveryDate").val();
-
-        $.ajax({
-            url: '@Url.Action("OrderCreation","Project")',
-            type: 'Post',
-            dataType: 'Json',
-            data: {
-                   orderAndStudentModel = {
-                    customer: {
-                        CustomerName: CustomerName,
-                        CustomerAddress: CustomerAddress,
-                        Phone: Phone,
-                        Email: Email,
-                        OrderReceiveDate: OrderReceiveDate
-                  },
-                  order: {
-                        Amount: Amount,
-                        PaymentStatus: PaymentStatus,
-                        DeliveryAddress: DeliveryAddress,
-                        DeliveryDate: DeliveryDate
-                  }
-            },
-            success:function(response){
-                if(response){
-                    alert("Order Added");
+   function CreateOrder() {
+    debugger;
+    var CustomerName = $("#customer_CustomerName").val();
+    var CustomerAddress = $("#customer_CustomerAddress").val();
+    var Phone = $("#customer_Phone").val();
+    var Email = $("#customer_Email").val();
+    var OrderReceiveDate = $("#customer_OrderReceiveDate").val();
+    var Amount = $("#order_Amount").val();
+    var PaymentStatus = $("#order_PaymentStatus").val();
+    var DeliveryAddress = $("#order_DeliveryAddress").val();
+    var DeliveryDate = $("#order_DeliveryDate").val();
+    var orderAndStudentModel;
+    var customer;
+    var order;
+    $.ajax({
+        url: '/',
+        type: 'Post',
+        dataType: 'Json',
+        data: {
+            orderAndStudentModel: {
+                customer: {
+                    CustomerName: CustomerName,
+                    CustomerAddress: CustomerAddress,
+                    Phone: Phone,
+                    Email: Email,
+                    OrderReceiveDate: OrderReceiveDate
+                },
+                order: {
+                    Amount: Amount,
+                    PaymentStatus: PaymentStatus,
+                    DeliveryAddress: DeliveryAddress,
+                    DeliveryDate: DeliveryDate
                 }
-                else{
-                    alert("Order Could not be added");
-                }
-
             },
-            error:function(xhr,status,error){
-                alert("Error Occured");
+        },
+        success: function (response) {
+            if (response) {
+                alert("Order Added");
+            } else {
+                alert("Order Could not be added");
             }
-        })
-    }
+        },
+        error: function (xhr, status, error) {
+            alert("Error Occurred");
+        }
+    });
+}
+
 </script>
