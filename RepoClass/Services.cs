@@ -107,7 +107,10 @@ namespace CollegeProject.RepoClass
         }
         public Agent AgentLogIn(Agent agent)
         {
-           
+            if (agent.AgentEmail == null)
+            {
+                return agent;
+            }
             using (SqlConnection con = new SqlConnection(ConnectionString()))
             {   
                 con.Open();
@@ -129,6 +132,33 @@ namespace CollegeProject.RepoClass
               
             }
 
+        }
+        public Vendor VendorLogIn(Vendor vendor)
+        {
+            if (vendor.CompanyEmail == null)
+            {
+                return vendor;
+            }
+            using (SqlConnection con = new SqlConnection(ConnectionString()))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("sp_insertDatas", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@AgentEmail", vendor.CompanyEmail);
+                cmd.Parameters.AddWithValue("@AgentPassword", vendor.Password);
+                cmd.Parameters.AddWithValue("@flag", "VendorLogIn");
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                if (rdr.Read())
+                {
+                    vendor.ResponseCode = (int)rdr["ResponseCode"];
+                    vendor.ResponseMessage = rdr["ResponseMessage"].ToString();
+                    vendor.CompanyId = rdr["AgentId"].ToString();
+
+                }
+                return vendor;
+
+            }
         }
     }
 }

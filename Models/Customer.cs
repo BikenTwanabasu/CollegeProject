@@ -19,7 +19,7 @@
         public string? CompanyEmail { get; set; }
 
         public string? Password { get; set; }
-        public string? ResponseCode { get; set; }
+        public int? ResponseCode { get; set; }
         public string? ResponseMessage { get; set; }
     }
                      

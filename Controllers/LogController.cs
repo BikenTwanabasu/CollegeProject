@@ -13,7 +13,7 @@ namespace CollegeProject.Controllers
         {
             _services = services;
         }
-        [HttpPost]
+        
         public IActionResult AgentLoggingIn(Agent agent)
         {
             var a = _services.AgentLogIn(agent);
@@ -22,11 +22,25 @@ namespace CollegeProject.Controllers
                 return Json(a);
             }
             return View();
-        }
-            public IActionResult Index()
+        } 
+        
+        public IActionResult VendorLoggingIn(Vendor vendor)
+        {
+            var a = _services.VendorLogIn(vendor);
+            if (a.ResponseCode!=null)
             {
-                return View();
+                return Json(a);
             }
+            return View();
+        }
+
+
+        public IActionResult Index()
+        {
+                return View();
+        }
+
+       
     }
 }
 

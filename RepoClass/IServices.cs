@@ -8,5 +8,6 @@ namespace CollegeProject.RepoClass
         public bool RegisterAgent(Agent agent);
         public bool OrderCreations(OrderAndStudentModel orderAndStudentModel);
         public Agent AgentLogIn(Agent agent);
+        public Vendor VendorLogIn(Vendor vendor);
     }
 }

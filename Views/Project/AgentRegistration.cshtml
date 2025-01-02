@@ -37,14 +37,14 @@
                 <span asp-validation-for="AgentPassword" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" onclick="AgentRegistration()" value="Create" class="btn btn-primary" />
+                <input type="submit" onclick="AgentRegistration()" value="Create" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="AgentLoggingIn" asp-controller="Log" style="color:#f9004d;">Back to LogIn</a>
 </div>
 
 <script>
