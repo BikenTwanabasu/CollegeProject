@@ -76,8 +76,8 @@
 </html>
 <script>
     function VendorLogIn(){
-        var CompanyEmail :$("#CompanyEmail").val()
-        var Password:$("#Password").val()
+        var CompanyEmail =$("#CompanyEmail").val();
+        var Password=$("#Password").val();
 
         if (CompanyEmail=='' || Password==''){
             document.getElementById('DivError').style.display = 'block';
@@ -87,7 +87,32 @@
             return;
         }
         $.ajax({
-            url:''
+            url:'@Url.Action("VendorLoggingIn","Log")',
+            type:'Post',
+            dataType:'Json',
+            data:{
+                CompanyEmail: CompanyEmail,
+                Password: Password              
+            },
+            success:function(response){
+                if(response!=null){
+                    if(response.responseCode!=1){
+                        document.getElementById('DivError').style.display = 'block';
+                        $("#DivError").html('<div class="alert alert-danger">'+response.responseMessage+'</div>');
+                        $("#DivError").show();
+                        $('#DivError').delay(1500).slideUp();
+                    }
+                    else{
+                        document.getElementById('DivError').style.display = 'block';
+                        $("#DivError").html('<div class="alert alert-success">'+response.responseMessage+'</div>');
+                        $("#DivError").show();
+                        $('#DivError').delay(1500).slideUp();
+                    }
+                }
+            },
+            error:function(xhr,status,error){
+                alert("Error Occured!!!")
+            }
         })
 
     }
