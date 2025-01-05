@@ -42,6 +42,12 @@ namespace CollegeProject.Controllers
             var a = _services.OrderCreations(orderAndStudentModel);
             if (a)
             {
+                
+                var Info=HttpContext.GetClaimsData();
+
+                ViewBag.I = Info.Id;
+                ViewBag.N = Info.Name;
+                ViewBag.E = Info.Email;
                 return Json(a);
             }
             return View();

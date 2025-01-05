@@ -2,11 +2,13 @@
 
 @{
     ViewData["Title"] = "Create Order";
+   
 }
 
 <h2>Create Order</h2>
 
 <h3>Customer Details</h3>
+<h4>@ViewBag.I</h4>
 
 @using (Html.BeginForm("OrderCreation", "Project", FormMethod.Post))
 {
