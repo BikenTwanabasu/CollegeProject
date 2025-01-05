@@ -24,7 +24,7 @@ namespace CollegeProject.Controllers
             {
                 var claim = new List<Claim>
                 {
-                    new Claim("Name",a.AgentName),
+                    
                     new Claim("Email",a.AgentEmail),
                     new Claim("Id",a.AgentId),
                     

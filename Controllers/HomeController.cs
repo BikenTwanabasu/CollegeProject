@@ -4,6 +4,8 @@ using System.Diagnostics;
 
 namespace CollegeProject.Controllers
 {
+
+ 
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -12,7 +14,6 @@ namespace CollegeProject.Controllers
         {
             _logger = logger;
         }
-
         public IActionResult Index()
         {
             return View();

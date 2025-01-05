@@ -43,13 +43,14 @@ namespace CollegeProject.Controllers
             if (a)
             {
                 
-                var Info=HttpContext.GetClaimsData();
-
-                ViewBag.I = Info.Id;
-                ViewBag.N = Info.Name;
-                ViewBag.E = Info.Email;
+               
+                
                 return Json(a);
             }
+            var Info = HttpContext.GetClaimsData();
+
+            ViewBag.I = Info.Id;
+            ViewBag.E = Info.Email;
             return View();
 
         }
