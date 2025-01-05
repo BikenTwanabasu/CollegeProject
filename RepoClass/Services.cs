@@ -144,8 +144,8 @@ namespace CollegeProject.RepoClass
                 con.Open();
                 SqlCommand cmd = new SqlCommand("sp_insertDatas", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@AgentEmail", vendor.CompanyEmail);
-                cmd.Parameters.AddWithValue("@AgentPassword", vendor.Password);
+                cmd.Parameters.AddWithValue("@CompanyEmail", vendor.CompanyEmail);
+                cmd.Parameters.AddWithValue("@CompanyPassword", vendor.Password);
                 cmd.Parameters.AddWithValue("@flag", "VendorLogIn");
                 SqlDataReader rdr = cmd.ExecuteReader();
 
@@ -153,7 +153,7 @@ namespace CollegeProject.RepoClass
                 {
                     vendor.ResponseCode = (int)rdr["ResponseCode"];
                     vendor.ResponseMessage = rdr["ResponseMessage"].ToString();
-                    vendor.CompanyId = rdr["AgentId"].ToString();
+                    vendor.CompanyId = rdr["CompanyId"].ToString();
 
                 }
                 return vendor;
