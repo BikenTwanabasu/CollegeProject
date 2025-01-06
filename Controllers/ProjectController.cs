@@ -48,7 +48,6 @@ namespace CollegeProject.Controllers
                 return Json(a);
             }
             var Info = HttpContext.GetClaimsData();
-
             ViewBag.I = Info.Id;
             ViewBag.E = Info.Email;
             return View();

@@ -24,7 +24,7 @@ namespace CollegeProject.Controllers
             {
                 var claim = new List<Claim>
                 {
-                    
+                    new Claim("Name",a.AgentName),
                     new Claim("Email",a.AgentEmail),
                     new Claim("Id",a.AgentId),
                     
@@ -41,6 +41,14 @@ namespace CollegeProject.Controllers
             var a = _services.VendorLogIn(vendor);
             if (a.ResponseCode!=null)
             {
+                var claims = new List<Claim>
+                {
+                    new Claim("Name",a.CompanyName),
+                    new Claim("Id",a.CompanyId),
+                    new Claim("Email",a.CompanyEmail)
+                };
+                var claimsIdentity=new ClaimsIdentity(claims,CookieAuthenticationDefaults.AuthenticationScheme);    
+                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,new ClaimsPrincipal(claimsIdentity));
                 return Json(a);
             }
             return View();

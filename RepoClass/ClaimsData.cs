@@ -12,7 +12,7 @@ namespace CollegeProject.RepoClass
 
             if (claimsIdentity != null)
             {
-                
+                model.Name = claimsIdentity.FindFirst(x => x.Type == "Name").Value;
                 model.Email = claimsIdentity.FindFirst(x => x.Type == "Email").Value;
                 model.Id = claimsIdentity.FindFirst(x => x.Type == "Id").Value;
             }

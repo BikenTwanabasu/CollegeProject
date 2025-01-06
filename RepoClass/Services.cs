@@ -127,6 +127,7 @@ namespace CollegeProject.RepoClass
                     agent.ResponseCode = (int)rdr["ResponseCode"];
                     agent.ResponseMessage = rdr["ResponseMessage"].ToString();
                     agent.AgentId = rdr["AgentId"].ToString();
+                    agent.AgentName = rdr["AgentName"].ToString();
  
                 }
                 return agent;
@@ -155,6 +156,7 @@ namespace CollegeProject.RepoClass
                     vendor.ResponseCode = (int)rdr["ResponseCode"];
                     vendor.ResponseMessage = rdr["ResponseMessage"].ToString();
                     vendor.CompanyId = rdr["CompanyId"].ToString();
+                    vendor.CompanyName = rdr["CompanyName"].ToString();
 
                 }
                 return vendor;

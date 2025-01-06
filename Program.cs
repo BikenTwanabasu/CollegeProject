@@ -33,6 +33,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Log}/{action=AgentLoggingIn}/{id?}");
+    pattern: "{controller=Log}/{action=VendorLoggingIn}/{id?}");
 
 app.Run();
