@@ -33,6 +33,7 @@
         public string? DeliveryDate { get; set; }    
         public string? OrderReceiveDate { get;set; }
         public string? CustomerId { get; set; }
+        public string? CompanyId { get; set; }
     }
 
     public class Agent

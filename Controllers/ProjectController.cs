@@ -12,7 +12,7 @@ namespace CollegeProject.Controllers
         {
             _services = services;
         }
-        
+      
         public IActionResult VendorRegistration(Vendor vendor)
         {
             
@@ -24,6 +24,7 @@ namespace CollegeProject.Controllers
             return View();
 
         }
+     
         public IActionResult AgentRegistration(Agent agent)
         {
 

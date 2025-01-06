@@ -98,6 +98,7 @@ namespace CollegeProject.RepoClass
                 cmd.Parameters.AddWithValue("@PaymentStatus", orderAndStudentModel.order.PaymentStatus);
                 cmd.Parameters.AddWithValue("@DeliveryAddress", orderAndStudentModel.order.DeliveryAddress);
                 cmd.Parameters.AddWithValue("@DeliveryDate", orderAndStudentModel.order.DeliveryDate);
+                cmd.Parameters.AddWithValue("@CompanyId", orderAndStudentModel.order.CompanyId);
                 
                 cmd.Parameters.AddWithValue("@flag", "OrderCreation");
 

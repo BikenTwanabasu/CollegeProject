@@ -8,7 +8,7 @@
 <h2>Create Order</h2>
 
 <h3>Customer Details</h3>
-<h4>@ViewBag.I</h4>
+
 
 
 
@@ -77,11 +77,12 @@
     var PaymentStatus = $("#order_PaymentStatus").val();
     var DeliveryAddress = $("#order_DeliveryAddress").val();
     var DeliveryDate = $("#order_DeliveryDate").val();
+    var CompanyId='@ViewBag.I';
     var orderAndStudentModel;
     var customer;
     var order;
     $.ajax({
-        url: '/',
+        url: '@Url.Action("OrderCreation","Project")',
         type: 'Post',
         dataType: 'Json',
         data: {
@@ -97,7 +98,8 @@
                     Amount: Amount,
                     PaymentStatus: PaymentStatus,
                     DeliveryAddress: DeliveryAddress,
-                    DeliveryDate: DeliveryDate
+                    DeliveryDate: DeliveryDate,
+                    CompanyId:CompanyId
                 }
             },
         },
