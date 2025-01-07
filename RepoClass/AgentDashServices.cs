@@ -27,17 +27,19 @@ namespace collegeproject.repoclass
                 SqlCommand cmd = new SqlCommand("sp_insertDatas", con);
                 cmd.CommandType=System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@flag", "AgentTaskPickupList");
+                cmd.Parameters.AddWithValue("@AgentId", agentM.AgentId);
                 SqlDataReader rdr = cmd.ExecuteReader();
 
-                if (rdr.Read())
+                while (rdr.Read())
                 {
-                    agentM.OrderId = rdr["OrderId"].ToString();
-                    agentM.VendorName = rdr["CompanyName"].ToString() ;
-                    agentM.VendorAddress = rdr["CompanyAddress"].ToString();
-                    agentM.VendorPhone = rdr["CompanyPhone"].ToString();
-                    agentM.CreatedDate = (DateOnly)rdr["CreatedDate"];
+                    AgentTaskModel agent = new AgentTaskModel();
+                    agent.OrderId = rdr["OrderId"].ToString();
+                    agent.VendorName = rdr["CompanyName"].ToString() ;
+                    agent.VendorAddress = rdr["CompanyAddress"].ToString();
+                    agent.VendorPhone = rdr["CompanyPhone"].ToString();
+                    agent.CreatedDate = rdr["CreatedDate"].ToString();
 
-                    agentTasksList.Add(agentM);
+                    agentTasksList.Add(agent);
                 }
                 return agentTasksList;
             }

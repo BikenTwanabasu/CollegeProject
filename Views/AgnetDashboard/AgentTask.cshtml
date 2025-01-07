@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "AgentTask";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 <h1>AgentTask</h1>
@@ -9,51 +11,79 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table table-bordered table-striped table-hover  mb-2" id="table1">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.OrderId)
+                OrderId
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.VendorName)
+                VendorName
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.VendorAddress)
+                VendorAddress
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.VendorPhone)
+                VendorPhone
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DeliveryStatus)
+                CreatedDate
             </th>
-            <th></th>
+            <th>
+                DeliveryStatus
+            </th>
+           
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VendorName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VendorAddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VendorPhone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DeliveryStatus)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+    <tbody >
+
     </tbody>
 </table>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+       
+        AgentTaskList();
+    });
+    function AgentTaskList(){
+        var AgentId=@ViewBag.Id;
+        var a ='';
+        $.ajax({
+            url: '@Url.Action("AgentTask123","AgnetDashboard")',
+            type:'Get',
+            dataType:'Json',
+            data:{
+                AgentId:AgentId
+            },
+            success:function(response){
+                $("#table1 tbody").html('');
+                if(response!=null){
+                    for(var i=0;i<response.length;i++){
+                        a +=`
+                            <tr>
+                                <td>${response[i].orderId}</td>
+                                <td>${response[i].vendorName}</td>
+                                <td>${response[i].vendorAddress}</td>
+                                <td>${response[i].vendorPhone}</td>
+                                <td>${response[i].createdDate}</td>
+                                <td><input type="button" class="btn btn-success " value="OrderReceived"/></td>
+                            </tr>
+                            `;
+                       
+                    }
+                    $("#table1 tbody").html(a);
+
+                    $("#table1").DataTable();
+                    
+                }
+                else{
+                    alert("Failed");
+                }
+            },
+            error:function(xhr,status,error){
+                alert("error Occured");
+            }
+        })
+    }
+</script>

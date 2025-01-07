@@ -21,10 +21,22 @@ namespace CollegeProject.Controllers
             return View();
 
         }
-        public IActionResult AgentTask(AgentTaskModel agent)
+        
+        public IActionResult AgentTask()
         {
-            var a =_agentdashservices.GetAgentTask(agent);
-            return View(a);
+            var claimdata = HttpContext.GetClaimsData();
+            ViewBag.Id = claimdata.Id;
+            return View();
+           
+            
+        }
+
+        
+        public IActionResult AgentTask123(AgentTaskModel agent)
+        {
+            
+            var a = _agentdashservices.GetAgentTask(agent);
+            return Json(a);
         }
 
     }

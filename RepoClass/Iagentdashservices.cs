@@ -4,6 +4,6 @@ namespace CollegeProject.RepoClass
 {
     public interface Iagentdashservices
     {
-        public List<AgentTaskModel> GetAgentTask(AgentTaskModel agentM);
+        public List<AgentTaskModel> GetAgentTask(AgentTaskModel agent);
     }
 }
