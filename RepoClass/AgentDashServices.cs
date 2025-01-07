@@ -24,8 +24,9 @@ namespace collegeproject.repoclass
             using (SqlConnection con = new SqlConnection(Connection()))
             {   List<AgentTaskModel> agentTasksList = new List<AgentTaskModel>();
                 con.Open();
-                SqlCommand cmd = new SqlCommand("AgentTaskPickupList", con);
+                SqlCommand cmd = new SqlCommand("sp_insertDatas", con);
                 cmd.CommandType=System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@flag", "AgentTaskPickupList");
                 SqlDataReader rdr = cmd.ExecuteReader();
 
                 if (rdr.Read())
