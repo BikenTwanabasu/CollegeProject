@@ -6,7 +6,13 @@ namespace CollegeProject.Controllers
 {
     public class AgnetDashboard : Controller
     {
-        private Iagentdashservices _agentdashservices;
+        private readonly Iagentdashservices _agentdashservices;
+
+        public AgnetDashboard(Iagentdashservices agentdashservices)
+        {
+            _agentdashservices = agentdashservices;
+        }
+
         public IActionResult Index()
         {
             var a = HttpContext.GetClaimsData();
@@ -17,7 +23,8 @@ namespace CollegeProject.Controllers
         }
         public IActionResult AgentTask(AgentTaskModel agent)
         {
-            return View();
+            var a =_agentdashservices.GetAgentTask(agent);
+            return View(a);
         }
 
     }
