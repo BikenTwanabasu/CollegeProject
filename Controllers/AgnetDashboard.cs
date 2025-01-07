@@ -7,15 +7,12 @@ namespace CollegeProject.Controllers
     {
         public IActionResult Index()
         {
-            var a =HttpContext.GetClaimsData();
-            ViewBag.ID=a.Id;
+            var a = HttpContext.GetClaimsData();
+            ViewBag.ID = a.Id;
             ViewBag.Name = a.Name;
             return View();
 
         }
-
-
-
 
     }
 }
