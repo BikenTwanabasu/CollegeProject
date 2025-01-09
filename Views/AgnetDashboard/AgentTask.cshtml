@@ -11,6 +11,9 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<p style="text-align:center;color:darkgreen">
+    Today's Tasks
+</p>
 <table class="table table-bordered table-striped table-hover  mb-2" id="table1">
     <thead>
         <tr>
@@ -50,7 +53,7 @@
         var AgentId=@ViewBag.Id;
         var a ='';
         $.ajax({
-            url: '@Url.Action("AgentTask123","AgnetDashboard")',
+            url: '@Url.Action("AgentTaskJson","AgnetDashboard")',
             type:'Get',
             dataType:'Json',
             data:{
@@ -67,7 +70,7 @@
                                 <td>${response[i].vendorAddress}</td>
                                 <td>${response[i].vendorPhone}</td>
                                 <td>${response[i].createdDate}</td>
-                                <td><input type="button" class="btn btn-success " value="OrderReceived"/></td>
+                                <td><input type="button" id="button${response[i].orderId}" class="btn btn-success " onClick="StatusUpdate1(${response[i].orderId})" value="OrderReceived"/></td>
                             </tr>
                             `;
                        
@@ -85,5 +88,33 @@
                 alert("error Occured");
             }
         })
+    }
+</script>
+<script>
+    function StatusUpdate1(orderID){
+        debugger;
+        var button = document.getElementById("button"+orderID);
+            $.ajax({
+            url: '@Url.Action("DeliveryStatusAgent1","AgnetDashboard")',
+            type:'Get',
+            data:{
+                orderID:orderID
+            },
+            dataType:'Json',
+            success:function(response){
+                if (response != null) {
+                    debugger;       
+                   $("#button"+orderID).val(response.deliveryStatus);
+                    button.disabled = true;
+                    
+                    
+                }
+               
+
+            },
+            error:function(xhr,status,error){
+                alert("Error Occured!!!");
+            }
+            })
     }
 </script>

@@ -37,7 +37,52 @@ namespace collegeproject.repoclass
                     agent.VendorName = rdr["CompanyName"].ToString() ;
                     agent.VendorAddress = rdr["CompanyAddress"].ToString();
                     agent.VendorPhone = rdr["CompanyPhone"].ToString();
-                    agent.CreatedDate = rdr["CreatedDate"].ToString();
+                    agent.CreatedDate = Convert.ToDateTime( rdr["CreatedDate"]).ToString("yyyy/MM/dd");
+
+                    agentTasksList.Add(agent);
+                }
+                return agentTasksList;
+            }
+        }
+
+        public OrderStatus getOrderStatusByAgent1(OrderStatus orderS)
+        {
+            using(SqlConnection con = new SqlConnection(Connection()))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("sp_insertDatas", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@OrderId", orderS.OrderId);
+                cmd.Parameters.AddWithValue("@flag", "DeliveryStatusAgent1");
+                SqlDataReader rdr =cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    orderS.DeliveryStatus = rdr["DeliveryStatus"].ToString();
+                }
+                return orderS;
+            }
+        }
+        public List<AgentTaskModel> GetAgentRecords(AgentTaskModel agentM)
+        {
+            using (SqlConnection con = new SqlConnection(Connection()))
+            {
+                List<AgentTaskModel> agentTasksList = new List<AgentTaskModel>();
+                con.Open();
+                SqlCommand cmd = new SqlCommand("sp_insertDatas", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@flag", "AgentPastRecords");
+                cmd.Parameters.AddWithValue("@AgentId", agentM.AgentId);
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    AgentTaskModel agent = new AgentTaskModel();
+                    agent.OrderId = rdr["OrderId"].ToString();
+                    agent.VendorName = rdr["CompanyName"].ToString();
+                    agent.VendorAddress = rdr["CompanyAddress"].ToString();
+                    agent.VendorPhone = rdr["CompanyPhone"].ToString();
+                    agent.DeliveredDate =Convert.ToDateTime( rdr["DeliveryDate"]).ToString("yyyy/MM/dd");
 
                     agentTasksList.Add(agent);
                 }

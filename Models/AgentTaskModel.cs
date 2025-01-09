@@ -9,5 +9,6 @@
         public string? CreatedDate { get; set; } 
         public string? DeliveryStatus { get; set; } 
         public string? AgentId { get; set; }
+        public string? DeliveredDate { get; set; }  
     }
 }

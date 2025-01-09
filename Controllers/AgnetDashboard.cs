@@ -32,12 +32,31 @@ namespace CollegeProject.Controllers
         }
 
         
-        public IActionResult AgentTask123(AgentTaskModel agent)
+        public IActionResult AgentTaskJson(AgentTaskModel agent)
         {
             
             var a = _agentdashservices.GetAgentTask(agent);
             return Json(a);
         }
 
+        public IActionResult DeliveryStatusAgent1(OrderStatus order)
+        {
+            var a = _agentdashservices.getOrderStatusByAgent1(order);
+            return Json(a);
+        }
+
+        public IActionResult AgentPastRecords()
+        {
+            var claimdata = HttpContext.GetClaimsData();
+            ViewBag.Id = claimdata.Id;
+            return View();
+        }
+
+        public IActionResult AgentRecord(AgentTaskModel agent)
+        {
+            var a = _agentdashservices.GetAgentRecords(agent);
+            return Json(a);
+
+        }
     }
 }
