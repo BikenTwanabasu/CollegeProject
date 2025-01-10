@@ -89,5 +89,32 @@ namespace collegeproject.repoclass
                 return agentTasksList;
             }
         }
+
+        public List<AgentTaskModel> GetDeliveryTask(AgentTaskModel agent1)
+        {
+            using(SqlConnection con = new SqlConnection(Connection()))
+            {
+                List<AgentTaskModel> DeliveryList = new List<AgentTaskModel>();
+                con.Open();
+                SqlCommand cmd = new SqlCommand("sp_insertDatas", con);
+                cmd.CommandType=System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@flag", "AgentTaskDeliverList");
+                cmd.Parameters.AddWithValue("@Agent", agent1.AgentId);
+                SqlDataReader rdr =cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    AgentTaskModel agent = new AgentTaskModel();
+                    agent.OrderId = rdr["OrderId"].ToString();
+                    agent.CustomerName = rdr["Cust_Name"].ToString();
+                    agent.CustomerAddress= rdr["Cust_Address"].ToString();
+                    agent.CustomerPhone = rdr["Cust_Phone"].ToString();
+                    agent.DeliveryDate = Convert.ToDateTime( rdr["DeliveryDate"]).ToString("yyyy/MM/dd");
+
+                    DeliveryList.Add(agent) ;
+                }
+                return DeliveryList;
+            }
+        }
     }
 }
