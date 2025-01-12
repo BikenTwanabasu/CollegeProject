@@ -14,5 +14,13 @@
         public string? CustomerAddress { get; set; } 
         public string? CustomerPhone { get; set; }  
         public string? DeliveryDate { get; set; }
+        public string? AgentName { get; set; }
+        public string? AgentPhone { get; set; }
+        public string? ReceiverAgentId { get; set; }
+        public string? ReceiverAgentName { get; set; }
+        public string? ReceiverAgentPhone { get; set; }
+        public string? DeliveryAgentId { get; set; }
+        public string? DeliveryAgentName { get; set; }
+        public string? DeliveryAgentPhone { get; set; } 
     }
 }

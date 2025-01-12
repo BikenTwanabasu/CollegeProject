@@ -12,9 +12,10 @@
     <a asp-action="Create">Create New</a>
 </p>
 <p style="text-align:center;color:darkgreen">
-    Today's Tasks
+    Today's Recieve Tasks
 </p>
-<table class="table table-bordered table-striped table-hover  mb-2" id="table1">
+<div>
+  <table class="table table-bordered table-striped table-hover  mb-2" id="table1">
     <thead>
         <tr>
             <th>
@@ -41,7 +42,45 @@
     <tbody >
 
     </tbody>
-</table>
+  </table>
+</div>
+
+
+<p style="text-align:center;color:darkgreen">
+    Today's Delivery Tasks
+</p>
+<div>
+  <table class="table table-bordered table-striped table-hover  mb-2" id="table2">
+    <thead>
+        <tr>
+            <th>
+                OrderId
+            </th>
+            <th>
+                VendorName
+            </th>
+            <th>
+                CustomerName
+            </th>
+            <th>
+                CustomerAddress
+            </th>
+            <th>
+                CustomerPhone
+            </th>
+            <th>
+                DeliveryDate 
+            </th>
+            <th>
+                DeliveryStatus
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script>
@@ -53,7 +92,7 @@
         var AgentId=@ViewBag.Id;
         var a ='';
         $.ajax({
-            url: '@Url.Action("AgentTaskJson","AgnetDashboard")',
+            url: '@Url.Action("AgentReceiverTaskJson","AgnetDashboard")',
             type:'Get',
             dataType:'Json',
             data:{
@@ -89,6 +128,7 @@
             }
         })
     }
+   
 </script>
 <script>
     function StatusUpdate1(orderID){
@@ -116,5 +156,47 @@
                 alert("Error Occured!!!");
             }
             })
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        GetAgentDeliveryTask();
+    });
+    function GetAgentDeliveryTask() {
+        debugger;
+        var Agentid = @ViewBag.Id;
+
+        $.ajax({
+            url: '@Url.Action("AgentDeliveryTaskJson","AgnetDashboard")',
+            type: 'Get',
+            data: {
+                Agentid: Agentid
+            },
+            dataType: 'Json',
+            success: function (response) {
+                if (response != null) {
+                    var row = '';
+                    for (var i = 0; i < response.length; i++) {
+                        row += `
+                                            <tr>
+                                                    <td>${response[i].OrderId}</td>
+                                                    <td>${response[i].VendorName}</td>
+                                                    <td>${response[i].CustomerName}</td>
+                                                    <td>${response[i].CustomerAddress}</td>
+                                                    <td>${response[i].CustomerPhone}</td>
+                                                    <td>${response[i].DeliveredDate}</td>
+                                                    <td><input type=button id='button2${response.OrderId}' onClick="button2(${response.OrderId})"  >${response[i].DeliveryStatus}</td>
+                                            </tr>
+                                    `;
+                        $("#table2 tbody").html(row);
+
+                    }
+                    $("#table2").DataTable();
+                }
+            },
+            error: function (xhr, status, error) {
+                alert("error Occured");
+            }
+        })
     }
 </script>

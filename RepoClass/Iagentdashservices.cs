@@ -7,5 +7,6 @@ namespace CollegeProject.RepoClass
         public List<AgentTaskModel> GetAgentTask(AgentTaskModel agent);
         public OrderStatus getOrderStatusByAgent1(OrderStatus orderS);
         public List<AgentTaskModel> GetAgentRecords(AgentTaskModel agentM);
+        public List<AgentTaskModel> GetAgentDeliveryTask(AgentTaskModel agentA);
     }
 }

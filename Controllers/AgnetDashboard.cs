@@ -32,10 +32,16 @@ namespace CollegeProject.Controllers
         }
 
         
-        public IActionResult AgentTaskJson(AgentTaskModel agent)
+        public IActionResult AgentReceiverTaskJson(AgentTaskModel agent)
         {
             
             var a = _agentdashservices.GetAgentTask(agent);
+            return Json(a);
+        }
+
+        public IActionResult AgentDeliveryTaskJson(AgentTaskModel agent)
+        {
+            var a = _agentdashservices.GetAgentDeliveryTask(agent);
             return Json(a);
         }
 

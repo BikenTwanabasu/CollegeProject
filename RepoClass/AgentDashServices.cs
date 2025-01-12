@@ -45,6 +45,35 @@ namespace collegeproject.repoclass
             }
         }
 
+        public List<AgentTaskModel> GetAgentDeliveryTask(AgentTaskModel agentA)
+        {
+            using (SqlConnection con = new SqlConnection(Connection()))
+            {
+                List<AgentTaskModel> agentDeliveryTasksList = new List<AgentTaskModel>();
+                con.Open();
+                SqlCommand cmd = new SqlCommand("sp_insertDatas", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@flag", "AgentTaskDeliveryList");
+                cmd.Parameters.AddWithValue("@AgentId", agentA.AgentId);
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    AgentTaskModel agent = new AgentTaskModel();
+                    agent.OrderId = rdr["OrderId"].ToString();
+                    agent.VendorName = rdr["CompanyName"].ToString();
+                    agent.CustomerName = rdr["Cust_Name"].ToString() ;
+                    agent.CustomerAddress = rdr["Cust_Address"].ToString();
+                    agent.CustomerPhone = rdr["Cust_Phone"].ToString();
+                    agent.DeliveredDate = Convert.ToDateTime(rdr["DeliveryDate"]).ToString("yyyy/MM/dd");
+                    agent.DeliveryStatus = rdr["DeliveryStatus"].ToString();
+
+                    agentDeliveryTasksList.Add(agent);
+                }
+                return agentDeliveryTasksList;
+            }
+        }
+
         public OrderStatus getOrderStatusByAgent1(OrderStatus orderS)
         {
             using(SqlConnection con = new SqlConnection(Connection()))
