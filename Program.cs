@@ -8,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IServices,Services>();
 builder.Services.AddSingleton<Iagentdashservices, agentdashservices>();
+builder.Services.AddSingleton<IVendorDashServices, VendorDashServices>();
+builder.Services.AddSingleton<IAdminServices, AdminServices>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                  .AddCookie(options =>
                  {

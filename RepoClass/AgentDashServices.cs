@@ -53,7 +53,7 @@ namespace collegeproject.repoclass
                 con.Open();
                 SqlCommand cmd = new SqlCommand("sp_insertDatas", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@flag", "AgentTaskDeliveryList");
+                cmd.Parameters.AddWithValue("@flag", "AgentTaskDeliverList");
                 cmd.Parameters.AddWithValue("@AgentId", agentA.AgentId);
                 SqlDataReader rdr = cmd.ExecuteReader();
 

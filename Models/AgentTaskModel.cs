@@ -10,6 +10,8 @@
         public string? DeliveryStatus { get; set; } 
         public string? AgentId { get; set; }
         public string? DeliveredDate { get; set; }  
+        public string? CompanyID { get; set; }
+        public string? CustomerId { get; set; }
         public string? CustomerName { get; set; }
         public string? CustomerAddress { get; set; } 
         public string? CustomerPhone { get; set; }  
